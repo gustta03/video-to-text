@@ -15,7 +15,7 @@ export class MeaningWord {
         messages: [
           {
             role: 'user',
-            content: `explique resumidamente a palavra ingles: ${word}`
+            content: `explique resumidamente em poucas palavras a palavra ingles: ${word}`
           }
         ],
         model: 'gpt-3.5-turbo'

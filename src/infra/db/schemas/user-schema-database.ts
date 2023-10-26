@@ -10,6 +10,8 @@ baseSchema.add({
   videoHistory: [
     {
       videoId: String,
+      videoTitle: String,
+      thumb: String,
       dateViewed: { type: Date, default: Date.now }
     }
   ]

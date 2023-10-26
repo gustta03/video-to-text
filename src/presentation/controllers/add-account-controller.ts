@@ -14,7 +14,7 @@ export class AddAccountController implements Controller {
       if (!name || !email || !password) {
         return HttpResponse.badRequest(new MissingParamError('Dados incompletos'))
       }
-      const accountResult = await this.addAccountUseCase.add({ ...request.body })
+      const accountResult = await this.addAccountUseCase.add({ name, email, password })
       return HttpResponse.ok(accountResult)
     } catch (error) {
       console.log(error)
