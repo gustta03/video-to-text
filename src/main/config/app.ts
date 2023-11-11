@@ -6,10 +6,11 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-app.use(json())
 app.use(cors({
   origin: 'https://gugaa.vercel.app'
 }))
+
+app.use(json())
 
 setupRoutes(app)
 export default app
