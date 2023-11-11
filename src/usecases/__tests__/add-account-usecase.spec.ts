@@ -16,6 +16,10 @@ class AddAccountRepositoryStub {
   async add (): Promise<string> {
     return 'any-token'
   }
+
+  async loadByEmail (): Promise<string> {
+    return 'any-user'
+  }
 }
 
 class HashAccountPasswordStub implements Hasher {
@@ -60,7 +64,6 @@ describe('AddAccountUseCase', () => {
   test('should return a valid access token when provided with valid input', async () => {
     const { addAccountUseCase } = makeSut()
     const request = await addAccountUseCase.add({
-      name: 'any_name',
       email: 'any_mail@mail.com',
       password: 'any_password'
     })
@@ -73,6 +76,9 @@ describe('AddAccountUseCase', () => {
     const mockAddAccountError = {
       add: jest.fn().mockImplementation(() => {
         throw new Error('Email invalid provided')
+      }),
+      loadByEmail: jest.fn().mockImplementation(() => {
+        throw new Error('User already exist')
       })
     }
     const addAccountUseCase = new AddAccountUseCase(
@@ -84,7 +90,6 @@ describe('AddAccountUseCase', () => {
 
     await expect(async () => {
       await addAccountUseCase.add({
-        name: 'any-name',
         email: 'invalid-mail',
         password: 'any-password'
       })

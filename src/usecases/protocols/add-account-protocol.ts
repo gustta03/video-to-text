@@ -4,6 +4,9 @@ export interface AddAccount {
 }
 
 export namespace AddAccont {
-  export type Params = { name: string, email: string, password: string }
+  export type Params = {
+    email: string
+    password: string
+  }
   export type Response = string
 }

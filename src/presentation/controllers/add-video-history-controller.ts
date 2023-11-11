@@ -8,12 +8,12 @@ export class AddVideoHitoryController implements Controller {
   constructor (private readonly addVideoHistoryUseCase: AddHistoryUsecase) {}
   async handle (request: any): Promise<HttpBodyResponse> {
     try {
-      const { userId, videoTitle, thumb, dateViewed } = request
-      if (!userId || !videoTitle || !thumb || !dateViewed) {
+      const { videoId, videoTitle, thumb, dateViewed } = request.body
+
+      if (!videoId || !videoTitle || !thumb || !dateViewed) {
         return HttpResponse.badRequest(new MissingParamError('Http request inválido'))
       }
-
-      const videoHistory = this.addVideoHistoryUseCase.save(request)
+      const videoHistory = this.addVideoHistoryUseCase.save({ user: request.accessToken, data: request.body })
       return HttpResponse.created(videoHistory)
     } catch (error) {
       HttpResponse.InteanlError()

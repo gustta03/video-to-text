@@ -20,7 +20,6 @@ export interface UserBaseRepository {
 }
 
 export interface BaseRepository {
-  update: (input: Respository.Input) => Promise<void>
-  deleteById: (input: any) => Promise<void>
+  add: (input: Respository.Input) => Promise<void>
   seachAll: (input: any) => Promise<Respository.Response>
 }

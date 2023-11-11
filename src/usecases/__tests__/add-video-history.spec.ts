@@ -1,8 +1,9 @@
+import { AddVideHistoryUseCase } from '../add-video-history'
+import { Decrypter, Encrypter } from '../protocols/cryptography/encripter-protocol'
 import {
   AddHistory,
   AddHistoryTypes
 } from '../protocols/db/db-add-history-protocols'
-import { AddHistoryUsecase } from '../protocols/save-videos-history-protocol'
 
 type SutType = {
   addHistoryRepositoryStub: AddHistoryRepositoryStub
@@ -10,27 +11,30 @@ type SutType = {
 }
 
 class AddHistoryRepositoryStub implements AddHistory {
+  findAll: (params: AddHistoryTypes.FindParam) => Promise<AddHistoryTypes.FindResponse[]>
   async add (params: AddHistoryTypes.Params): Promise<string> {
     return 'inserted_id'
   }
 }
 
-class AddVideHistoryUseCase implements AddHistoryUsecase {
-  constructor (private readonly addHistoryRepository: AddHistory) {}
-  async save (params: AddHistoryTypes.Params): Promise<string> {
-    try {
-      const saveHistory = await this.addHistoryRepository.add({ ...params })
-      return saveHistory
-    } catch (error) {
-      throw new Error(error)
+export class TokenGenerator implements Encrypter, Decrypter {
+  encrypt: (plaintext: string) => Promise<string>
+  // ... outros métodos e construtor ...
+
+  async decrypt (value: any): Promise<any> {
+    const fakeDecryptedData = {
+      userId: 'exampleUserId'
     }
+    return fakeDecryptedData
   }
 }
 
 const makeSut = (): SutType => {
   const addHistoryRepositoryStub = new AddHistoryRepositoryStub()
+  const tokenGenerator = new TokenGenerator()
   const addVideHistoryUseCase = new AddVideHistoryUseCase(
-    addHistoryRepositoryStub
+    addHistoryRepositoryStub,
+    tokenGenerator
   )
   return {
     addHistoryRepositoryStub,
@@ -42,24 +46,31 @@ describe('AddAccountUseCase', () => {
   test('should return an string inserted_id when history are saved correctly', async () => {
     const { addVideHistoryUseCase } = makeSut()
     const savedHistory = await addVideHistoryUseCase.save({
-      userId: 'any_user_id',
-      videoTitle: 'any_video_title',
-      thumb: 'any_thumb',
-      dateViewed: new Date()
+      user: 'any_token',
+      data: {
+        userId: '',
+        videoTitle: '',
+        thumb: '',
+        dateViewed: undefined
+      }
     })
     expect(savedHistory).toBe('inserted_id')
   })
 
   test('should throw an error if any history data are not provided', async () => {
     const addHistoryRepositorySpy = {
-      add: jest.fn().mockRejectedValue(new Error('error at repository'))
+      add: jest.fn().mockRejectedValue(new Error('error at repository')),
+      findAll: jest.fn().mockRejectedValue(new Error('error at repository'))
     }
-    const savedHistory = new AddVideHistoryUseCase(addHistoryRepositorySpy)
+    const savedHistory = new AddVideHistoryUseCase(addHistoryRepositorySpy, new TokenGenerator())
     await expect(savedHistory.save({
-      userId: '',
-      videoTitle: '',
-      thumb: '',
-      dateViewed: undefined
+      user: 'any_token',
+      data: {
+        userId: '',
+        videoTitle: '',
+        thumb: '',
+        dateViewed: undefined
+      }
     })).rejects.toThrowError('error at repository')
   })
 })

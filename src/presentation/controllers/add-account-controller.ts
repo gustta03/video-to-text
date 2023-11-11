@@ -10,11 +10,12 @@ export class AddAccountController implements Controller {
 
   async handle (request: AddAccountControllerParam.Request): Promise<HttpBodyResponse> {
     try {
-      const { name, email, password } = request.body
-      if (!name || !email || !password) {
+      const { email, password } = request.body
+      if (!email || !password) {
         return HttpResponse.badRequest(new MissingParamError('Dados incompletos'))
       }
-      const accountResult = await this.addAccountUseCase.add({ name, email, password })
+      const accountResult = await this.addAccountUseCase.add({ email, password })
+      if (!accountResult) return HttpResponse.conflict(new Error('O usuário com o e-mail fornecido já existe.'))
       return HttpResponse.ok(accountResult)
     } catch (error) {
       console.log(error)

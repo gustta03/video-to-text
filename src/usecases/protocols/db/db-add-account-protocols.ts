@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 export interface addAccountRepository {
   add: (params: Account.Params) => Promise<Account.Response>
+  loadByEmail: (param: string) => Promise<Account.Response>
 }
 
 export interface hashAccountPassoword {
@@ -13,7 +14,6 @@ export interface GenerateToken {
 
 export namespace Account {
   export type Params = {
-    name: string
     email: string
     password: string
   }

@@ -29,4 +29,18 @@ export class HttpResponse {
       body: new InternalServerError().message
     }
   }
+
+  static forbidden (error: Error): HttpBodyResponse {
+    return {
+      statusCode: 403,
+      body: error
+    }
+  }
+
+  static conflict (error: any): HttpBodyResponse {
+    return {
+      statusCode: 409,
+      body: error.message || 'Conflito de recurso.'
+    }
+  }
 }

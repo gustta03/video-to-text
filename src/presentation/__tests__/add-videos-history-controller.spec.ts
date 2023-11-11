@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { AddHistory, AddHistoryUsecase } from '@/usecases/protocols/save-videos-history-protocol'
+import { AddHistoryTypes, AddHistoryUsecase } from '@/usecases/protocols/save-videos-history-protocol'
 import { AddVideoHitoryController } from '../controllers/add-video-history-controller'
 
 class AddVideoHistoryUseCaseStub implements AddHistoryUsecase {
-  async save (params: AddHistory.Param): Promise<AddHistory.Response> {
+  async save (params: AddHistoryTypes.Param): Promise<AddHistoryTypes.Response> {
     return 'inserted_id'
   }
 }
