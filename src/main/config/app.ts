@@ -6,12 +6,14 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-app.options('*', cors())
+
 app.use(cors({
   origin: 'https://gugaa.vercel.app',
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }))
+
+app.options('*', cors())
 
 app.use(json())
 
