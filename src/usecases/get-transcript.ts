@@ -5,6 +5,7 @@ export class TranscriptVideo implements LoadVideoTrancript {
   constructor (private readonly loasTranscriptGateWay: HttpLoadTranscript) {}
 
   async load ({ videoID, languageCodes }: TranscriptResponse.Params): Promise<TranscriptResponse.Response> {
+    console.log(videoID, languageCodes)
     return await this.loasTranscriptGateWay.getSubtitles(
       videoID,
       languageCodes
