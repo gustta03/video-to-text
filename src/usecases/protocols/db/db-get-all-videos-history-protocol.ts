@@ -6,6 +6,8 @@ export interface GetAllVideosHistoryRepo {
 export namespace GetAllVideosHistory {
   export type Param = {
     userId: string
+    page: string
+    pageSize: string
   }
 
   export type Respose = {

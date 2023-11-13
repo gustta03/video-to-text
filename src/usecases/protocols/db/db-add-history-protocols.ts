@@ -16,6 +16,8 @@ export namespace AddHistoryTypes {
   }
   export type FindParam = {
     userId: string
+    pageSize: string
+    page: string
   }
   export type Response = string
   export type FindResponse = {

@@ -37,7 +37,9 @@ describe('GetAllVideoHistoryUseCase', () => {
     const { getAllVideosHistoryUseCase, getAllHistoryVideosRepository } = makeSut()
     const list = await getAllVideosHistoryUseCase.get({
       userId: 'any_id',
-      accessToken: ''
+      accessToken: 'any_token',
+      page: '2',
+      pageSize: '2'
     })
     expect(list).toEqual(getAllHistoryVideosRepository.data)
   })
@@ -48,7 +50,9 @@ describe('GetAllVideoHistoryUseCase', () => {
     const usecase = new GetAllVideosHistoryUseCase(GetAllVideosHistoryRepoSpy, new TokenGenerator())
     await expect(usecase.get({
       accessToken: '',
-      userId: ''
+      userId: '',
+      page: '',
+      pageSize: ''
     })).rejects.toThrow('Failed to get all history from the repository')
   })
 })

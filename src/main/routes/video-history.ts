@@ -5,5 +5,5 @@ import { makeGetAllHistoryController } from '../factories/controller/make-get-al
 
 export default (router: Router): void => {
   router.post('/video/history', adaptRoute(makeAddHistoryController()))
-  router.get('/videos/all/history/:userId', adaptRoute(makeGetAllHistoryController()))
+  router.get('/videos/all/history/pages', adaptRoute(makeGetAllHistoryController()))
 }

@@ -14,7 +14,11 @@ export class UserVideoHistory implements AddHistory {
 
   async findAll (params: AddHistoryTypes.FindParam): Promise<AddHistoryTypes.FindResponse[]> {
     const historyCollection = getCollection('history')
+    const skip = (parseInt(params.page) - 1) * parseInt(params.pageSize)
     const cursor = historyCollection.find({ userId: params.userId })
+      .sort({ timestamp: -1 })
+      .skip(skip)
+      .limit(parseInt(params.pageSize))
     const results = await cursor.toArray()
 
     const mappedResults = results.map((doc) => ({

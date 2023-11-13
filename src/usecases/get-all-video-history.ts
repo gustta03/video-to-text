@@ -6,8 +6,9 @@ export class GetAllVideosHistoryUseCase implements IGetAllVideosHistory {
   constructor (private readonly getAllHistoryVideosRepository: GetAllVideosHistoryRepo, private readonly decrypter: Decrypter) {}
   async get (param: GetAllVideosHistoryTypes.Param): Promise<GetAllVideosHistoryTypes.Response[]> {
     try {
+      const { page, pageSize } = param
       const userId = await this.decrypter.decrypt(param.accessToken)
-      return await this.getAllHistoryVideosRepository.findAll({ userId })
+      return await this.getAllHistoryVideosRepository.findAll({ userId, page, pageSize })
     } catch (error) {
       throw new Error(`error at usecase: ${error}`)
     }

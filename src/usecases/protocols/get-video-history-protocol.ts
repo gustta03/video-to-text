@@ -7,6 +7,8 @@ export namespace GetAllVideosHistoryTypes {
   export type Param = {
     accessToken: string
     userId: string
+    page: string
+    pageSize: string
   }
   export type Response = {
     userId: string

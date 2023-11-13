@@ -40,7 +40,11 @@ describe('addUserRepository', () => {
         dateViewed: undefined
       }
     })
-    const result = await userRepository.findAll({ userId: 'any_id' })
+    const result = await userRepository.findAll({
+      userId: 'any_id',
+      pageSize: '0',
+      page: '0'
+    })
     expect(result).toBeDefined()
   })
 })
