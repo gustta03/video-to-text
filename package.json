@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -23,6 +24,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
+    "husky": "^8.0.3",
     "jest": "^29.7.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^29.1.1",
