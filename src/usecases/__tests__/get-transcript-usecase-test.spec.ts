@@ -1,4 +1,4 @@
-import { TranscriptVideo } from '../get-transcript'
+import { TranscriptVideo } from '../videos/get-transcript'
 
 type sutType = {
   transcriptionUseCase: TranscriptVideo

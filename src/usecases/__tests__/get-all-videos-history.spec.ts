@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { GetAllVideosHistoryUseCase } from '../get-all-video-history'
+import { GetAllVideosHistoryUseCase } from '../videos/get-all-video-history'
 import { GetAllVideosHistoryRepo, GetAllVideosHistory } from '../protocols/db/db-get-all-videos-history-protocol'
 import { TokenGenerator } from './add-video-history.spec'
 

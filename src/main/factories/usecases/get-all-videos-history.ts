@@ -1,7 +1,7 @@
 import { TokenGenerator } from '@/infra/cryptography/token-generator'
 import { UserVideoHistory } from '@/infra/repositories/history/db-video-history'
 import env from '@/main/config/env'
-import { GetAllVideosHistoryUseCase } from '@/usecases/get-all-video-history'
+import { GetAllVideosHistoryUseCase } from '@/usecases/videos/get-all-video-history'
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const makeGetAllHistoryUseCase = () => {

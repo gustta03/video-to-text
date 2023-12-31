@@ -1,5 +1,5 @@
-import { MeaningWordFromGptGateway } from './protocols/gateway/http-load-meaning'
-import { WordMeaningGpt } from './protocols/get-meaning-protocol'
+import { MeaningWordFromGptGateway } from '../protocols/gateway/http-load-meaning'
+import { WordMeaningGpt } from '../protocols/get-meaning-protocol'
 
 export class GetMeaningFromGptUseCase implements WordMeaningGpt {
   constructor (private readonly getMeaningFromGpt: MeaningWordFromGptGateway) {}

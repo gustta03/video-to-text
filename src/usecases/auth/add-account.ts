@@ -1,14 +1,14 @@
 import {
   AddAccont,
   AddAccount
-} from '../usecases/protocols/add-account-protocol'
+} from '../protocols/add-account-protocol'
 
 import {
   GenerateToken,
   addAccountRepository,
   hashAccountPassoword
-} from './protocols/db/db-add-account-protocols'
-import { EmailValidator } from './protocols/email-validator-protocol'
+} from '../protocols/db/db-add-account-protocols'
+import { EmailValidator } from '../protocols/email-validator-protocol'
 
 export class AddAccountUseCase implements AddAccount {
   constructor (

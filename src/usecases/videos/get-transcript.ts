@@ -1,5 +1,5 @@
-import { HttpLoadTranscript } from './protocols/db/http-load-transcript'
-import { LoadVideoTrancript,TranscriptResponse } from './protocols/get-transcript-protocol'
+import { HttpLoadTranscript } from '../protocols/db/http-load-transcript'
+import { LoadVideoTrancript,TranscriptResponse } from '../protocols/get-transcript-protocol'
 
 export class TranscriptVideo implements LoadVideoTrancript {
   constructor (private readonly loasTranscriptGateWay: HttpLoadTranscript) {}

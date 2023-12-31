@@ -1,6 +1,6 @@
-import { Decrypter } from './protocols/cryptography/encripter-protocol'
-import { AddHistory, AddHistoryTypes } from './protocols/db/db-add-history-protocols'
-import { AddHistoryUsecase } from './protocols/save-videos-history-protocol'
+import { Decrypter } from '../protocols/cryptography/encripter-protocol'
+import { AddHistory, AddHistoryTypes } from '../protocols/db/db-add-history-protocols'
+import { AddHistoryUsecase } from '../protocols/save-videos-history-protocol'
 
 export class AddVideHistoryUseCase implements AddHistoryUsecase {
   constructor (private readonly addHistoryRepository: AddHistory, private readonly decrypter: Decrypter) {}

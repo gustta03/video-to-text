@@ -1,5 +1,5 @@
-import { LoadAccountByTokenUseCase } from '../usecases/protocols/load-account-by-token'
-import { Decrypter, DbLoadByTokenRepository } from '../usecases/protocols/db/db-load-account-by-token'
+import { LoadAccountByTokenUseCase } from '../protocols/load-account-by-token'
+import { Decrypter, DbLoadByTokenRepository } from '../protocols/db/db-load-account-by-token'
 
 export class DbLoadAccountByToken implements LoadAccountByTokenUseCase {
   constructor (

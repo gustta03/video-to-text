@@ -1,6 +1,6 @@
 import { AddAccount } from '../protocols/add-account-protocol'
 import { addAccountRepository, GenerateToken, hashAccountPassoword } from '../protocols/db/db-add-account-protocols'
-import { AddAccountUseCase } from '../add-account'
+import { AddAccountUseCase } from '../auth/add-account'
 import { EmailValidator } from '../protocols/email-validator-protocol' // Corrigido: Nome da interface
 import { Hasher } from '../protocols/cryptography/hasher-protocol'
 

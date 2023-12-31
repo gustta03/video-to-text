@@ -1,6 +1,6 @@
-import { Decrypter } from './protocols/cryptography/encripter-protocol'
-import { GetAllVideosHistoryRepo } from './protocols/db/db-get-all-videos-history-protocol'
-import { GetAllVideosHistoryTypes, IGetAllVideosHistory } from './protocols/get-video-history-protocol'
+import { Decrypter } from '../protocols/cryptography/encripter-protocol'
+import { GetAllVideosHistoryRepo } from '../protocols/db/db-get-all-videos-history-protocol'
+import { GetAllVideosHistoryTypes, IGetAllVideosHistory } from '../protocols/get-video-history-protocol'
 
 export class GetAllVideosHistoryUseCase implements IGetAllVideosHistory {
   constructor (private readonly getAllHistoryVideosRepository: GetAllVideosHistoryRepo, private readonly decrypter: Decrypter) {}
