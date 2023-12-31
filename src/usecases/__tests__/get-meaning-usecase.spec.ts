@@ -1,4 +1,4 @@
-import { GetMeaningFromGptUseCase } from '../get-meaning-word'
+import { GetMeaningFromGptUseCase } from '../words/get-meaning-word'
 import { MeaningWordFromGptGateway } from '../protocols/gateway/http-load-meaning'
 
 type sutType = {

@@ -4,7 +4,7 @@ import { TokenGenerator } from '@/infra/cryptography/token-generator'
 import { AddAccountRepository } from '@/infra/repositories/account/user-repository'
 import env from '@/main/config/env'
 
-import { DbLoadAccountByEmail } from '@/usecases/load-account-by-email'
+import { DbLoadAccountByEmail } from '../../../usecases/auth/load-account-by-email'
 
 export const makeLoadAccountUseCase = () => {
   const addAccountRepository = new AddAccountRepository()

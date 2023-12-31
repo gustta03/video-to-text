@@ -1,8 +1,8 @@
 // import { DbLoadByTokenRepository } from '../usecases/protocols/db/db-load-account-by-token'
-import { LoadAccountByEmailRepo } from './protocols/db/db-load-account-by-email'
-import { LoadAccountByEmail, LoadUserByEmail } from './protocols/db-load-account-by-email'
-import { Encrypter } from './protocols/cryptography/encripter-protocol'
-import { HashComparer } from './protocols/cryptography/hasher-protocol'
+import { LoadAccountByEmailRepo } from '../protocols/db/db-load-account-by-email'
+import { LoadAccountByEmail, LoadUserByEmail } from '../protocols/db-load-account-by-email'
+import { Encrypter } from '../protocols/cryptography/encripter-protocol'
+import { HashComparer } from '../protocols/cryptography/hasher-protocol'
 
 export class DbLoadAccountByEmail implements LoadAccountByEmail {
   constructor (

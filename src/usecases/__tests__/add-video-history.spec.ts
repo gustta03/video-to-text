@@ -1,4 +1,4 @@
-import { AddVideHistoryUseCase } from '../add-video-history'
+import { AddVideHistoryUseCase } from '../videos/add-video-history'
 import { Decrypter, Encrypter } from '../protocols/cryptography/encripter-protocol'
 import {
   AddHistory,
