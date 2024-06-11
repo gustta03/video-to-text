@@ -8,7 +8,7 @@ export class GetMeaningFromGptController implements Controller {
   async handle (httpRequest: GetMeaningFromGptParam.Request): Promise<HttpBodyResponse> {
     try {
       const meaningWord = await this.getMeaningWordUseCase.load(httpRequest.word)
-      console.log(HttpResponse.ok(meaningWord))
+     
       return HttpResponse.ok(meaningWord)
     } catch (error) {
       HttpResponse.InteanlError()
