@@ -16,7 +16,7 @@ export class MeaningWord {
       });
 
       const result = await model.generateContent(
-        `Explique o singificando com exemplos e contextos da palavra ingles: ${word}`
+        `Explique de forma resumida o singificando com exemplos e contextos da palavra ingles: ${word}`
       );
       const response = await result.response;
       return response.text();
