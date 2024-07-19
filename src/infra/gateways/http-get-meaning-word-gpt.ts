@@ -1,29 +1,27 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import env from '../../main/config/env'
-import { OpenAI } from 'openai'
+import env from "../../main/config/env";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export class MeaningWord {
-  private readonly openai: OpenAI
+  private readonly gemini: GoogleGenerativeAI;
 
-  constructor (apiKey = env.openIAKey) {
-    this.openai = new OpenAI({ apiKey })
+  constructor(apiKey = env.geminApiKey) {
+    this.gemini = new GoogleGenerativeAI(apiKey);
   }
 
-  async MeaningWordFromGpt (word: string) {
+  async MeaningWordFromGpt(word: string) {
     try {
-      const completion = await this.openai.chat.completions.create({
-        messages: [
-          {
-            role: 'user',
-            content: `explique resumidamente em poucas palavras a palavra ingles: ${word}`
-          }
-        ],
-        model: 'gpt-3.5-turbo'
-      })
+      const model = this.gemini.getGenerativeModel({
+        model: "gemini-1.5-flash",
+      });
 
-      return completion.choices[0].message.content
+      const result = await model.generateContent(
+        `Explique de forma resumida o singificando com exemplos e contextos da palavra ingles: ${word}`
+      );
+      const response = await result.response;
+      return response.text();
     } catch (error) {
-      console.error('An error occurred:', error)
+      console.error("An error occurred:", error);
     }
   }
 }
