@@ -13,12 +13,17 @@ export class UpdateCustomerStatus implements Controller {
   ) {}
 
   async handle(request: any): Promise<HttpBodyResponse> {
-    console.log(request);
+    const status = {
+      order_approved: "active",
+      subscription_renewed: "active",
+      subscription_canceled: "inactive",
+      subscription_late: "inactive",
+    };
     try {
-      if (request.body.order_status === "paid") {
+      if (request.body) {
         await this.updateAccountStatusUseCase.update({
           email: request.body.Customer.email,
-          status: "active",
+          status: status[request.body.webhook_event_type],
         });
         return HttpResponse.ok("Usuário atualizado com sucesso.");
       }

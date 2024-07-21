@@ -24,9 +24,11 @@ export class UpdateAccountStatusUseCase implements IUpdateAccountStatus {
   async update(param: updateById.Param): Promise<void> {
     try {
       const { status, email } = param;
+      const password = generateRandomHash(10);
+
       const mailOptions = {
-        to: param.email,
-        from: "gustavo@email",
+        to: "suporte@fluently.app.br",
+        from: "gustavo@fluently.app.br",
         subject: "subject",
         html: `<body>
             <p>Olá, obrigado por assinar o fluent.ly!</p>
@@ -36,7 +38,7 @@ export class UpdateAccountStatusUseCase implements IUpdateAccountStatus {
 
             <p>Para acessar entre com suas credenciais</p>
             <p>Email: ${email}</p>
-            <p>Senha: ${generateRandomHash(10)}</p>
+            <p>Senha: ${password}</p>
         </body>`,
       };
 
@@ -47,7 +49,7 @@ export class UpdateAccountStatusUseCase implements IUpdateAccountStatus {
       if (!customer) {
         this.customerAccountRepository.add({
           email: param.email,
-          password: generateRandomHash(10),
+          password: password,
         });
 
         transporter.sendMail(mailOptions, function (err) {
