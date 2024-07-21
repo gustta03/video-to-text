@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-export interface GetAllVideosHistoryRepo {
-  findAll: (
-    param: GetAllVideosHistory.Param
-  ) => Promise<GetAllVideosHistory.Respose[]>;
+export interface UpdateAccountStatusRepo {
+  updateById: (param: UpdateById.Param) => Promise<any>;
 }
 
-export namespace GetAllVideosHistory {
+export namespace UpdateById {
   export type Param = {
     userId: string;
-    page: string;
-    pageSize: string;
+    status: string;
   };
 
   export type Respose = {

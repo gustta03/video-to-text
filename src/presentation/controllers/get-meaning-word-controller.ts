@@ -1,23 +1,27 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { HttpResponse } from '../helper/httpResponse'
-import { Controller } from '../protocols/controller'
-import { HttpBodyResponse } from '../protocols/http'
+import { HttpResponse } from "../helper/httpResponse";
+import { Controller } from "../protocols/controller";
+import { HttpBodyResponse } from "../protocols/http";
 
 export class GetMeaningFromGptController implements Controller {
-  constructor (private readonly getMeaningWordUseCase: any) {}
-  async handle (httpRequest: GetMeaningFromGptParam.Request): Promise<HttpBodyResponse> {
+  constructor(private readonly getMeaningWordUseCase: any) {}
+  async handle(
+    httpRequest: GetMeaningFromGptParam.Request
+  ): Promise<HttpBodyResponse> {
     try {
-      const meaningWord = await this.getMeaningWordUseCase.load(httpRequest.word)
-     
-      return HttpResponse.ok(meaningWord)
+      const meaningWord = await this.getMeaningWordUseCase.load(
+        httpRequest.word
+      );
+
+      return HttpResponse.ok(meaningWord);
     } catch (error) {
-      HttpResponse.InteanlError()
+      HttpResponse.internalError();
     }
   }
 }
 
 export namespace GetMeaningFromGptParam {
   export type Request = {
-    word: string
-  }
+    word: string;
+  };
 }

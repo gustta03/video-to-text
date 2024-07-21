@@ -2,31 +2,28 @@ import { MissingParamError } from "@/utils/errors/missing-param-error";
 import { HttpResponse } from "../helper/httpResponse";
 import { Controller } from "../protocols/controller";
 import { HttpBodyResponse } from "../protocols/http";
-import { LoadAccountByEmail } from "@/usecases/protocols/db-load-account-by-email";
+import { DbLoadAccountByToken } from "@/usecases/db-load-account-by-token";
 
 export class LoadAccountController implements Controller {
-  constructor(private readonly addVideoHistoryUseCase: LoadAccountByEmail) {}
+  constructor(
+    private readonly loadAccountByTokenUseCase: DbLoadAccountByToken
+  ) {}
   async handle(request: any): Promise<HttpBodyResponse> {
     try {
-      const { email, password } = request.body;
-
-      if (!email || !password) {
+      if (!request.accessToken) {
         return HttpResponse.badRequest(
-          new MissingParamError("Http request inválido")
+          new MissingParamError("Http request inválido, requer access token")
         );
       }
-      const account = await this.addVideoHistoryUseCase.find({
-        email,
-        password,
-      });
+      const account = await this.loadAccountByTokenUseCase.load(
+        request.accessToken
+      );
 
       if (account) {
         return HttpResponse.ok(account);
       }
 
-      return HttpResponse.badRequest({
-        message: "O email ou senha fornecido estão incorretos",
-      });
+      return HttpResponse.badRequest({});
     } catch (error) {
       HttpResponse.internalError();
     }

@@ -1,26 +1,27 @@
-import { AddAccountRepository } from '../../repositories/account/user-repository'
-import { connect, disconnect } from '../../db/helper/in-db-memory-server'
-import { User } from '../../db/schemas/user-schema-database'
+import { AddAccountRepository } from "../../repositories/account/user-repository";
+import { connect, disconnect } from "../../db/helper/in-db-memory-server";
+import { User } from "../../db/schemas/user-schema-database";
 
-describe('addUserRepository', () => {
+describe("addUserRepository", () => {
   beforeAll(async () => {
-    await connect()
-  })
+    await connect();
+  });
 
   afterAll(async () => {
-    await disconnect()
-  })
+    await disconnect();
+  });
 
   beforeEach(async () => {
-    await User.deleteMany({})
-  })
+    await User.deleteMany({});
+  });
 
-  test('should create am user correctly', async () => {
-    const userRepository = new AddAccountRepository()
+  test("should create am user correctly", async () => {
+    const userRepository = new AddAccountRepository();
     const result = await userRepository.add({
-      email: 'any_mail.com',
-      password: 'any_password'
-    })
-    expect(result).toBeDefined()
-  })
-})
+      email: "any_mail.com",
+      password: "any_password",
+      status: "inactive",
+    });
+    expect(result).toBeDefined();
+  });
+});
