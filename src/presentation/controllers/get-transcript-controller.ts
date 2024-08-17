@@ -17,6 +17,7 @@ export class GetTranscriptController implements Controller {
 
       return HttpResponse.ok(httpResponse);
     } catch (error) {
+      console.error(error)
       return HttpResponse.internalError();
     }
   }
